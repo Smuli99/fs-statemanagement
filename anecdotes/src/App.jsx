@@ -21,7 +21,7 @@ const App = () => {
       <AnecdoteList />
       <AnecdoteForm />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
