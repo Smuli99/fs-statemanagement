@@ -1,4 +1,4 @@
-import { useAnecdotes } from "../store";
+import { useAnecdotes } from "../stores/anecdoteStore";
 import Anecdote from "./Anecdote";
 
 const AnecdoteList = () => {
