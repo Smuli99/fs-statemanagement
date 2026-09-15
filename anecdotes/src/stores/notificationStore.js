@@ -13,6 +13,6 @@ const useNotificationStore = create((set) => ({
   },
 }));
 
-// export const useNotificationActions = () => useNotificationStore(state => state.actions);
 export const useNotification = () => useNotificationStore(state => state.message);
-export default useNotificationStore;
+export const showNotification = (message) => 
+  useNotificationStore.getState().actions.show(message);

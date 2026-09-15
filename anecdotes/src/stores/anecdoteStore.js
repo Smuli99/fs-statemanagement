@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import useNotificationStore from './notificationStore';
+import { showNotification } from './notificationStore'
 
 import anecdoteService from '../services/anecdotes';
 
@@ -21,7 +21,7 @@ const useAnecdoteStore = create((set, get) => ({
         anecdotes: state.anecdotes.concat(newAnecdote)
       }));
 
-      useNotificationStore.getState().actions.show(`You added '${content}'`);
+      showNotification(`You added '${content}'`);
     },
     vote: async (id) => {
       const anecdoteToUpdate = get().anecdotes.find(a => a.id === id);
@@ -35,7 +35,7 @@ const useAnecdoteStore = create((set, get) => ({
         anecdotes: state.anecdotes.map(a => a.id === id ? updated : a)
       }));
 
-      useNotificationStore.getState().actions.show(`You voted '${updated.content}'`);
+      showNotification(`You voted '${updated.content}'`);
     },
     setFilter: (value) => set(() => ({filter: value}))
   },
