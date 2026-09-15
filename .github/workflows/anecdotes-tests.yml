@@ -2,7 +2,9 @@ name: Anecdotes tests
 
 on:
   push:
-    branches: [xmain]
+    branches:
+      -main
+      -tasks
 
 jobs:
   playwright-tests:
