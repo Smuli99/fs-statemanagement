@@ -35,7 +35,7 @@ const useAnecdoteStore = create((set, get) => ({
         anecdotes: state.anecdotes.map(a => a.id === id ? updated : a)
       }));
 
-      showNotification(`You voted '${updated.content}'`);
+      showNotification(`you voted '${updated.content}'`);
     },
     remove: async (id) => {
       await anecdoteService.remove(id);

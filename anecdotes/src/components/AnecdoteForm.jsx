@@ -5,7 +5,7 @@ const AnecdoteForm = () => {
 
    const addNew = (e) => {
     e.preventDefault()
-    add(e.target.new.value);
+    add(e.target.anecdote.value);
     e.target.reset()
   }
   
@@ -14,7 +14,7 @@ const AnecdoteForm = () => {
       <h2>create new</h2>
       <form onSubmit={addNew}>
         <div>
-          <input name="new" data-testid="new" />
+          <input name="anecdote" data-testid="new" />
         </div>
         <button type="submit">create</button>
       </form>
