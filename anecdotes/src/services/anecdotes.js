@@ -5,9 +5,22 @@ const getAll = async () => {
   
   if (!response.ok) throw new Error('Failed to fetch data');
 
-  return response.json();
+  return await response.json();
 };
+
+const create = async (anecdote) => {
+  const response = await fetch(baseUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json '},
+    body: JSON.stringify(anecdote),
+  });
+
+  if (!response.ok) throw new Error('Failed to create anecdote');
+
+  return await response.json();
+}
 
 export default {
   getAll,
+  create,
 };

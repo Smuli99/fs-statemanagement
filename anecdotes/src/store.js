@@ -16,11 +16,10 @@ const useAnecdoteStore = create((set) => ({
         )
       })
     ),
-    // add: (anecdote) => set(
-    //   state => ({
-    //     anecdotes: [ ...state.anecdotes, asObject(anecdote) ]
-    //   })
-    // ),
+    add: async (anecdote) => {
+      const newAnecdote = await anecdoteService.create({ content: anecdote, votes: 0 });
+      set(state => ({ anecdotes: state.anecdotes.concat(newAnecdote) }));
+    },
     setFilter: (value) => set(() => ({filter: value}))
   },
 }))

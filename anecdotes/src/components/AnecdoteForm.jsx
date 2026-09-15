@@ -5,8 +5,7 @@ const AnecdoteForm = () => {
 
    const addNew = (e) => {
     e.preventDefault()
-    const anecdote = e.target.new.value
-    add(anecdote);
+    add(e.target.new.value);
     e.target.reset()
   }
   
