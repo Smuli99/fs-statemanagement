@@ -18,7 +18,7 @@ export const useAnecdotes = () => {
     onSuccess: (anecdote) => {
       const anecdotes = queryClient.getQueryData(['anecdotes']);
       queryClient.setQueryData(['anecdotes'], anecdotes.concat(anecdote));
-      setNotification(`anecdote '${anecdote.content}' added`);
+      setNotification(`anecdote '${anecdote.content}' created`);
       setTimeout(() => setNotification(null), 5000);
     },
     onError: (error) => {
