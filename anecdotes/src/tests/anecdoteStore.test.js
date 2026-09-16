@@ -7,7 +7,6 @@ import useAnecdoteStore, {
 } from '../stores/anecdoteStore';
 
 import anecdoteService from '../services/anecdotes';
-import anecdotes from '../services/anecdotes';
 
 vi.mock('../services/anecdotes', () => ({
   default: {
@@ -51,6 +50,34 @@ describe('useAnecdoteStore', () => {
     expect(result.current).toEqual(
       mockData.toSorted((a, b) => b.votes - a.votes)
     );
+  });
+
+  it('3 voting increments anecdotes votes by 1', async () => {
+    const anecdoteToVote = mockData.find(a => a.content === 'Here is content');
+    
+    useAnecdoteStore.setState({ anecdotes: mockData });
+    anecdoteService.update.mockResolvedValue({
+      ...anecdoteToVote,
+      votes: anecdoteToVote.votes + 1
+    });
+
+    const { result } = renderHook(() => useAnecdotes());
+    
+    expect(
+      result.current.find(a => a.id === anecdoteToVote.id).votes
+    ).toBe(3);
+
+    const { result: actionsResult } = renderHook(() => useAnecdoteActions());
+
+    await act(async () => {
+      await actionsResult.current.vote(anecdoteToVote.id);
+    });
+
+    const { result: anecdoteResult } = renderHook(() => useAnecdotes());
+
+    expect(
+      anecdoteResult.current.find(a => a.id === anecdoteToVote.id).votes
+    ).toBe(4);
   });
 
 });
