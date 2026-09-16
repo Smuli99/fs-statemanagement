@@ -21,6 +21,11 @@ export const useAnecdotes = () => {
       setNotification(`anecdote '${anecdote.content}' added`);
       setTimeout(() => setNotification(null), 5000);
     },
+    onError: (error) => {
+      setNotification('too short anecdote, must have length 5 or more');
+      setTimeout(() => setNotification(null), 5000);
+      console.log(error);
+    },
   });
 
   const updateAnecdoteMutation = useMutation({
